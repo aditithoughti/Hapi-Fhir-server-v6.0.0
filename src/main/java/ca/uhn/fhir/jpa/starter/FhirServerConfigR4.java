@@ -1,0 +1,24 @@
+package ca.uhn.fhir.jpa.starter;
+
+import ca.uhn.fhir.jpa.config.r4.JpaR4Config;
+import ca.uhn.fhir.jpa.starter.annotations.OnR4Condition;
+import ca.uhn.fhir.jpa.starter.cql.StarterCqlR4Config;
+import ca.uhn.fhir.jpa.starter.mdm.MdmConfig;
+import org.springframework.context.annotation.Conditional;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+@EnableJpaRepositories(basePackages = "ca.uhn.fhir.jpa.starter.dao")
+@Configuration
+@Conditional(OnR4Condition.class)
+@Import({
+	StarterJpaConfig.class,
+	JpaR4Config.class,
+	StarterCqlR4Config.class,
+	ElasticsearchConfig.class
+})
+
+
+public class FhirServerConfigR4 {
+}
